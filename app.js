@@ -1,22 +1,17 @@
-import express from 'express';
-import "dotenv/config";
-import session from "express-session";
+import express from "express";
 import Hello from "./hello.js";
-import Lab5 from './lab5.js';
-import CourseRoutes from "./courses/routes.js";
+import Lab5 from "./Lab5.js";
 import cors from "cors";
-import ModuleRoutes from './modules/routes.js';
-import AssignmentRoutes from './assignments/routes.js';
+import CourseRoutes from "./courses/routes.js"
+import ModuleRoutes from "./modules/routes.js";
+import "dotenv/config";
+
 const app = express();
-app.listen(process.env.PORT || 4000);
-app.use(cors({
-    credentials: true,
-    origin: process.env.FRONTEND_URL
-    })
-);
 app.use(express.json());
+app.use(cors()
+);
 CourseRoutes(app);
 ModuleRoutes(app);
-AssignmentRoutes(app);
-Lab5(app);
-Hello(app);
+Lab5(app)
+Hello(app)
+app.listen(process.env.PORT || 4000);
